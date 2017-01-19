@@ -27,6 +27,9 @@ class Security extends Phalcon\Mvc\User\Plugin
 			if($status == 1){
 				$role = "Admins";
 			}
+		}else{
+			header("Location:".$this->config->web->loginUrl."?ret_url=".urlencode($this->config->web->siteUrl));
+			return false;
 		}
 
 		$controller = $dispatcher->getControllerName();
