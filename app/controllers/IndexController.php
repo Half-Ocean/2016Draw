@@ -67,7 +67,7 @@ class IndexController extends \Phalcon\Mvc\Controller
 
         //概率1/9
         $chouzhongID = rand(1,9);
-        $chouzhongID = 1;
+  //      $chouzhongID = 1;
         if($chouzhongID == 1){
 
             $goods_list = $this->getGoodsList();
