@@ -138,7 +138,7 @@ $di->set('cookies', function(){
 //redis
 $di->setShared('redis', function() use ($config){
 
-	$redisHost = $config->redis->host;
+	$redisHost = $config->redis->hosts[rand(0, count($config->redis->hosts) - 1)];
 	$redis = new Redis();
 	$redis->connect($redisHost->host, $redisHost->port);
 	return $redis;
