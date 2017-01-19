@@ -25,7 +25,10 @@ class Logs extends \Phalcon\Mvc\Model
             return false;
         }
 
-        return true;
+        $insertId = $logModel -> getWriteConnection() -> lastInsertId($logModel -> getSource());
+
+        return $insertId;
+
     }
 
 
