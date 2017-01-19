@@ -80,7 +80,7 @@ class MainController extends \Phalcon\Mvc\Controller
         }
 
         $userInfo = Users::findFirstByUserId($user_id);
-        if($userInfo || empty($notes)){
+        if($userInfo && empty($notes)){
             echo json_encode(array("retcode"=>-1,"msg"=>"变更原因不能为空:("));
             exit;
         }
