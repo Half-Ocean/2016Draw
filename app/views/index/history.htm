@@ -1,0 +1,59 @@
+{{ partial("common/header") }}
+
+
+<div class="main">
+
+
+    <ul class="history">
+        <li><span style="padding-left: 40px;">用户名</span></li>
+        <li><span>最后中奖时间</span></li>
+
+
+        {% for log in list %}
+        <li>
+            <img src="{{log['avatar_url']}}" onerror="this.src='https://admin-account.idaddy.cn/img/error.png'">
+            <font>{{log['nickname']}}</font>
+        </li>
+        <li>
+            <font>{{log['create_time']}}</font>
+        </li>
+        {% endfor %}
+
+
+    </ul>
+
+
+
+</div>
+
+
+
+
+<script>
+    $(function(){
+        $('.main').css({'min-height':$(document).height() + 'px'});
+
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+{{ partial("common/footer") }}
+
+
+
+
+
+
+
+
+
+
+

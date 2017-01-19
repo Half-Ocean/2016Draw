@@ -1,0 +1,59 @@
+<?php
+// CONFIG_VERSION=1
+
+return new \Phalcon\Config(array(
+
+    'database_main' => array(
+        'hosts'         => array({{range service "mysql-event"}}
+            array('host' => '{{.Address}}', 'port' => {{.Port}}),{{end}}
+        ),
+        'username'      => '{{key "event-web-cfg/app-cfg/database_main/username"}}',
+        'password'      => '{{key "event-web-cfg/app-cfg/database_main/password"}}',
+        'name'          => '{{key_or_default "event-web-cfg/app-cfg/database_main/name" "eventdb"}}',
+        'charset'       => '{{key_or_default "event-web-cfg/app-cfg/database_main/charset" "utf8"}}'
+    ),
+
+
+    'application' => array(
+        'controllersDir'=> '/app/controllers/',
+        'modelsDir'     => '/app/models/',
+        'viewsDir'      => '/app/views/',
+        'pluginsDir'    => '/app/plugins/',
+        'libraryDir'    => '/app/library/'
+    ),
+
+    'web' => array(
+        'siteUrl'       => '{{key_or_default "event-web-cfg/app-cfg/draw/web/siteUrl"  "http://event.idaddy.cn/light/"}}',
+        'loginUrl'      => '{{key_or_default "event-web-cfg/app-cfg/light/web/loginUrl" "https://account.idaddy.cn/login/index/"}}',
+
+    ),
+
+    'volt' => array(
+        'cachePath'     => '{{key_or_default "event-web-cfg/app-cfg/volt/cachePath" "/cache/"}}'
+    ),
+
+    'qiniu' => array(
+        'voicePath'     => '{{key "paas-service/qiniu-cloud/community-image/https-url-prefix"}}',
+        'imgPath'       => '{{key "paas-service/qiniu-cloud/user-avatar/https-url-prefix"}}',
+    ),
+
+    'microservice' => array(
+        'memberservice_hosts' => array({{range service "member-microservice"}}
+            array('host' => '{{.Address}}', 'port' => {{.Port}}),{{end}}
+        ),
+        'ilistenservice_hosts' => array({{range service "ilisten-microservice"}}
+            array('host' => '{{.Address}}', 'port' => {{.Port}}),{{end}}
+        ),
+        'messageservice_hosts' => array({{range service "message-microservice"}}
+            array('host' => '{{.Address}}', 'port' => {{.Port}}),{{end}}
+        ),
+    ),
+
+    'redis' => array(
+        'hosts'       => array({{range service "redis-appshare"}}
+                         array("host" => "{{.Address}}", "port" => {{.Port}}),{{end}}
+                     ),
+        'timeout' => {{key_or_default "ilisten-service-cfg/app-cfg/redis/timeout" "3600"}}
+    ),
+
+));

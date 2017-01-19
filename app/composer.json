@@ -1,0 +1,13 @@
+{
+  "config": {
+    "secure-http": false
+  },
+  "require": {
+    "packaged/thrift": ">=0.9.0",
+    "ext-phalcon": ">=2.0.0"
+  },
+  "repositories": [
+  { "type": "composer", "url": "http://packagist.phpcomposer.com" },
+  { "packagist": false }
+  ]
+}

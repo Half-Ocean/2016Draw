@@ -1,0 +1,180 @@
+{{ partial("common/header") }}
+
+
+<div class="main">
+
+    <a href="ilisten:///community/topic/info?id=4356" class="gz"></a>
+    <div class="clear" style="height: 35px;"></div>
+    <div class="goods_count" onclick="window.location.href='/2016Draw/index/goodsList/'">
+        还剩<span> {{stock}} </span>个奖品
+    </div>
+    <div class="clear" style="height: 30px;"></div>
+
+
+    <ul class="light up">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
+
+    <div class="clear" style="height: 50px;"></div>
+
+    <div class="light_count" onclick="window.location.href='/2016Draw/index/myHistory/';">
+        <font>您还剩余 </font>
+        <span>{{count}}</span>
+        <font> 次抽奖机会</font>
+    </div>
+
+
+    <a href="" class="go_light" style="display: none;">
+        增加抽奖机会
+    </a>
+
+
+    <div class="clear" style="height: 50px;"></div>
+
+
+    <div class="bottom" onclick="window.location.href='/2016Draw/index/history/';">
+        累计中奖：{{count2}}人次  | 已抽奖：{{count1}}人次
+    </div>
+
+
+
+</div>
+
+<div class="black"></div>
+
+<div class="alert" style="display: none;">
+    <div class="content a1">
+        <h1>亲，您需要邀请3个人以上才有抽奖机会，每邀请1人，增加一次抽奖机会。</h1>
+        <a href="{{lightUrl}}">成为点灯人，邀请好友</a>
+    </div>
+
+    <div class="content a2">
+        <img src="/2016Draw/img/nothing.png" class="nothing">
+        <h2>未中奖，换个姿势更容易中奖哦！</h2>
+    </div>
+
+    <div class="content a3">
+
+        <h2 style="line-height: 20px;">比吧只能早讲影响</h2>
+        <img src="/2016Draw/img/goods/1.jpg" class="goods">
+        <h3>恭喜您中奖了</h3>
+
+        <h4>留意故事库右上角的通知</h4>
+    </div>
+
+    <div class="content a4">
+        <h1></h1>
+    </div>
+
+    <div class="close"></div>
+</div>
+
+
+
+
+
+<script>
+    $(function(){
+        $('.main').css({'min-height':$(document).height() + 'px'});
+        $('.light>li').height($('.light>li').width()*1.1);
+
+        $(".black,.close").click(function(){
+            $(".black").hide();
+            $(".alert").hide();
+            window.location.reload();
+        });
+
+        $(".light>li").bind("click",function(){
+            $(".light>li").unbind("click");
+            clickLight();
+        });
+
+
+        function clickLight(){
+
+            $.ajax({
+                type: 'POST',
+                url: "/2016Draw/index/light/" ,
+                dataType: "json",
+                error: function(){
+
+                    $(".light>li").bind("click",function(){
+                        $(".light>li").unbind("click");
+                        clickLight();
+                    });
+
+                } ,
+                success: function(data){
+
+                    var retcode = data.retcode;
+                    if( retcode == -1 ){
+                        var msg = data.msg;
+                        $(".alert>.a4").show().siblings(".content").hide();
+                        $(".alert>.a4>h1").html(msg);
+                        $(".black").show();
+                        $(".alert").show();
+                        return;
+                    }else if( retcode == 1 ){
+                        var msg = data.msg;
+                        $(".alert>.a1").show().siblings(".content").hide();
+                        $(".alert>.a1>h1").html(msg);
+                        $(".black").show();
+                        $(".alert").show();
+                        return;
+                    }else if( retcode == 2 ){
+                        $(".alert>.a2").show().siblings(".content").hide();
+                        $(".black").show();
+                        $(".alert").show();
+                        return;
+                    }else if( retcode == 3 ){
+                        var award = data.award;
+                        $(".alert>.a3").show().siblings(".content").hide();
+                        $(".alert>.a3>img").attr("src","/2016Draw/img/goods/"+award.award_id+".jpg");
+                        $(".alert>.a3>h2").html(award.award_name);
+                        $(".alert>.a3>h3[data='price']").html("价值"+award.award_price+"元");
+                        $(".black").show();
+                        $(".alert").show();
+                        return;
+                    }
+
+
+                }
+            });
+
+
+        }
+
+
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+{{ partial("common/footer") }}
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,83 @@
+{{ partial("main/header") }}
+
+
+<div class="ch-container">
+    <div class="row">
+        {{ partial("main/left") }}
+
+        <div id="content" class="col-lg-10 col-sm-10 border">
+            <div class="row">
+                <div class="alert alert-info">
+
+                    <label class="control-label">用户ID：</label>
+                    <input type="text"  name="search_uid" value="{{search_uid}}" class="form-control" style="float:left; width:auto;">
+
+                    <button type="button" class="btn btn-default" style="margin:0 0 0 30px;" onclick="getConditionTopicList()">搜索</button>
+                    <script>
+                        function getConditionTopicList(){
+
+                            var actionUrl = "/2016Draw/main/userlog/";
+                            var search_uid = $('input[name=search_uid]').val();
+                            actionUrl = actionUrl+'?search_uid='+search_uid;
+                            window.location.href=actionUrl;
+
+                        }
+
+
+                    </script>
+
+                </div>
+                <div class="box-content">
+                    <table class="table table-striped table-bordered bootstrap-datatable ddatatable">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>用户ID</th>
+                            <th>抽奖次数</th>
+                            <th>原因</th>
+                            <th>变更时间</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+
+
+                        {% for log in list %}
+                        <tr>
+                            <td>{{log['Id']}}</td>
+                            <td>{{log['user_id']}}</td>
+                            <td class="center">{{log['count']}}</td>
+                            <td class="center">{{log['notes']}}</td>
+                            <td class="center">{{log['create_time']}}</td>
+                        </tr>
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+        <script>
+            $(document).ready(function(){
+                $('.ddatatable').dataTable({
+                    "sPaginationType": "bootstrap",
+                    "sDom": "<'row'<'col-md-6'l><'col-md-6'f>r>t<'row'<'col-md-12'i><'col-md-12 center-block'p>>",
+                    "aaSorting": [[ 6, "desc" ]]
+                })
+            });
+        </script>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+{{ partial("main/footer") }}

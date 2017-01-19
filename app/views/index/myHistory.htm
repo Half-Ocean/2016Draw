@@ -1,0 +1,58 @@
+{{ partial("common/header") }}
+
+
+<div class="main">
+
+    <h2 style="color:#ffbf07; height: 60px; line-height: 60px; padding: 0 0 0 20px; font-size: 18px;">
+        中奖历史
+    </h2>
+
+    <ul class="history">
+
+        {% for log in list %}
+        <li style="width: 65%; padding: 0;">
+            <img src="/2016Draw/img/goods/{{log['award_id']}}.jpg" style="width: auto; height: 40px; border-radius: 5px;" >
+            <font>{{log['award_name']}}</font>
+        </li>
+        <li style="width: 30%; padding: 0 5% 0 0;">
+            <font>{{log['create_time']}}</font>
+        </li>
+        {% endfor %}
+
+    </ul>
+
+
+
+</div>
+
+
+
+
+<script>
+    $(function(){
+        $('.main').css({'min-height':$(document).height() + 'px'});
+
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+{{ partial("common/footer") }}
+
+
+
+
+
+
+
+
+
+
+

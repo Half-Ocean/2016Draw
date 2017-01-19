@@ -1,0 +1,64 @@
+{{ partial("common/header") }}
+
+
+<div class="main">
+
+    <div class="clear" style="height: 25px;"></div>
+    <div class="last_count">
+        剩余<span> {{stock}} </span>个奖品
+    </div>
+
+    <div class="line">
+        <span style="width: {{present}}%"></span>
+    </div>
+
+    <h5></h5>
+
+    <div class="clear" style="height: 20px;"></div>
+
+    <ul class="goods_list">
+
+        {% for goods in list %}
+        <li {% if goods['stock']<=0 %}class="no"{% endif %}>
+                {% if goods['stock']>0 %}
+                <img src="/2016Draw/img/goods/{{goods['award_id']}}.jpg">
+                {% else %}
+                <img src="/2016Draw/img/goods/{{goods['award_id']}}_no.jpg">
+                <div class="empty"></div>
+                {% endif %}
+            <h1>{{goods['award_name']}}</h1>
+        </li>
+        {% endfor %}
+
+    </ul>
+
+
+</div>
+
+
+
+
+<script>
+    $(function(){
+        $('.main').css({'min-height':$(document).height() + 'px'});
+        $('.empty').css({'top':'20px','left':($(".goods_list>li").width()-$(".empty").width())/2 + 'px'});
+        console.log($(".goods_list>li").width());
+        console.log($(".empty").width());
+    });
+</script>
+
+
+
+
+{{ partial("common/footer") }}
+
+
+
+
+
+
+
+
+
+
+
