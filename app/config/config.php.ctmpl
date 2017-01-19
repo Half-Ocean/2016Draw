@@ -23,7 +23,7 @@ return new \Phalcon\Config(array(
     ),
 
     'web' => array(
-        'siteUrl'       => '{{key_or_default "event-web-cfg/app-cfg/draw/web/siteUrl"  "http://event.idaddy.cn/light/"}}',
+        'siteUrl'       => '{{key_or_default "event-web-cfg/app-cfg/draw/web/siteUrl"  "http://event.idaddy.cn/2016Draw/"}}',
         'loginUrl'      => '{{key_or_default "event-web-cfg/app-cfg/light/web/loginUrl" "https://account.idaddy.cn/login/index/"}}',
 
     ),
