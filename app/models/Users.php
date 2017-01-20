@@ -5,7 +5,7 @@ class Users extends \Phalcon\Mvc\Model
     protected $member_service;
 
     public $user_id;
-    public $count;
+    public $draw_count;
     public $create_time;
     public $update_time;
 
@@ -39,9 +39,9 @@ class Users extends \Phalcon\Mvc\Model
         $info = Users::findFirstByUserId($user_id);
         if(!$info){
             $this->add_user( $user_id );
-            $user_info['count'] = 0;
+            $user_info['draw_count'] = 0;
         }else{
-            $user_info['count'] = $info->count;
+            $user_info['draw_count'] = $info->draw_count;
         }
 
         return $user_info;
@@ -90,7 +90,7 @@ class Users extends \Phalcon\Mvc\Model
         $userInfo = new Users();
         if($userInfo->create(array(
             "user_id"=>$user_id,
-            "count"=> 0,
+            "draw_count"=> 0,
             "create_time"=>date("Y-m-d H:i:s"),
             "update_time"=>date("Y-m-d H:i:s"),
         ))){

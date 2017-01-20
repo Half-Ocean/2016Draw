@@ -4,7 +4,7 @@ class UserLogs extends \Phalcon\Mvc\Model
 {
     public $id;
     public $user_id;
-    public $count;
+    public $draw_count;
     public $notes;
     public $create_time;
 
@@ -13,14 +13,14 @@ class UserLogs extends \Phalcon\Mvc\Model
     }
 
 
-    public function addLogs( $user_id, $count , $notes ){
+    public function addLogs( $user_id, $draw_count , $notes ){
         if(empty($user_id) ){
             return false;
         }
 
         $logModel = new UserLogs();
         $logModel->user_id = $user_id;
-        $logModel->count = $count;
+        $logModel->draw_count = $draw_count;
         $logModel->notes = $notes;
         $logModel->create_time = date("Y-m-d H:i:s");
         if(!$logModel->create()){

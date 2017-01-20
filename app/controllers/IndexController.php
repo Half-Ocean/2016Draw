@@ -8,7 +8,7 @@ class IndexController extends \Phalcon\Mvc\Controller
         $userModel = new Users();
         $user_id = $this->cookies->get('gcsbbUid')->getValue();
         $userInfo = $userModel->getUserInfo($user_id);
-        $count = $userInfo['count'];
+        $count = $userInfo['draw_count'];
         if($count<=0){
             $count = 0;
         }
@@ -48,7 +48,7 @@ class IndexController extends \Phalcon\Mvc\Controller
         }
 
         $userInfo = $userModel->getUserInfo($user_id);
-        $count = $userInfo['count'];
+        $count = $userInfo['draw_count'];
         if($count<=0){
             $count = 0;
         }
@@ -93,7 +93,7 @@ class IndexController extends \Phalcon\Mvc\Controller
 
         //抽奖次数减少一次
         $user_info = Users::findFirstByUserId($user_id);
-        $user_info->count = $count-1;
+        $user_info->draw_count = $count-1;
         $user_info->update_time = date("Y-m-d H:i:s");
         $ok2 = $user_info->save();
 

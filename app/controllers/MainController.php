@@ -91,7 +91,7 @@ class MainController extends \Phalcon\Mvc\Controller
             $userInfo->user_id =$user_id;
             $userInfo->create_time =date("Y-m-d H:i:s");
             $userInfo->update_time =date("Y-m-d H:i:s");
-            $userInfo->count =0;
+            $userInfo->draw_count =0;
             if(!$userInfo->create()){
                 echo json_encode(array("retcode"=>-1,"msg"=>"新建用户失败:("));
                 exit;
@@ -104,7 +104,7 @@ class MainController extends \Phalcon\Mvc\Controller
         }
 
         $userInfo->update_time = date("Y-m-d H:i:s");
-        $userInfo->count = $count;
+        $userInfo->draw_count = $count;
         if(!$userInfo->save()){
             echo json_encode(array("retcode"=>-1,"msg"=>"变更用户抽奖次数失败:("));
             exit;
@@ -112,7 +112,7 @@ class MainController extends \Phalcon\Mvc\Controller
 
         $userLogModel = new UserLogs();
         $userLogModel->user_id = $user_id;
-        $userLogModel->count = intval($count);
+        $userLogModel->draw_count = intval($count);
         $userLogModel->notes = $notes;
         $userLogModel->create_time = date("Y-m-d H:i:s");
 
