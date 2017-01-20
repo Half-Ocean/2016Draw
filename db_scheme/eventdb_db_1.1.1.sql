@@ -19,7 +19,7 @@ create table  if not exists draw_logs(
 
 create table  if not exists draw_user(
     user_id int(11) not null primary key,
-    counts int(11) default '0',
+    count int(11) default '0',
     create_time timeStamp,
     update_time timeStamp
 );
@@ -27,7 +27,7 @@ create table  if not exists draw_user(
 create table  if not exists draw_user_log(
     id int(11) not null primary key auto_increment,
     user_id int(11) not null,
-    counts int(11) default '0',
+    count int(11) default '0',
     notes text ,
     create_time timeStamp
 );
