@@ -38,8 +38,11 @@ body{ width:100%; margin:0 auto; position:relative; font-size:16px; padding: 0;}
 
 .main .goods_count{ color: #fff; font-size: 14px; width: 150px; height: 40px;
     text-align: center; line-height: 40px; border: 1px solid #e2b041;
-    border-radius: 20px; margin: auto; clear: both; }
+    border-radius: 20px; margin: auto; clear: both; position: relative; }
 .main .goods_count span{ color:#e2b041; line-height: 40px; font-size: 16px; font-weight: bolder; }
+.main .goods_count font{ width: 6px; height: 20px; display: block; background: url("/2016Draw/img/sign.png") no-repeat; background-size: 100% auto; position: absolute; top: 15px; right: 15px; }
+
+
 
 .main .light{ width: 90%; display: block; margin: auto; clear: both;}
 .main .light li{ width: 33%; float: left; display: list-item;}
