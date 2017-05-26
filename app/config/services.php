@@ -166,9 +166,11 @@ $di->set('acl', function() use ($config) {
 
 	//权限下的Controller
  	$acl->allow('Guests', 'index', '*');
-//	$acl->allow('Guests', 'main', '*');
 	//权限下的Controller
-	$acl->allow('Admins', 'index', '*');
+	$acl->allow('Admins', 'index', 'index');
+	$acl->allow('Admins', 'index', 'history');
+	$acl->allow('Admins', 'index', 'myHistory');
+	$acl->allow('Admins', 'index', 'light');
 	$acl->allow('Admins', 'main', '*');
 
 
