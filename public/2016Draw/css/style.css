@@ -23,7 +23,7 @@ body{ width:100%; margin:0 auto; position:relative; font-size:16px; padding: 0;}
 
 
 .alert .content a{ color: #fff; width: 80%; height: 40px; border-radius: 20px; line-height: 40px; font-size: 14px;
-    display: block; text-align: center; background: #ff9e05; margin: 20px auto; }
+    display: block; text-align: center; background: #ff9e05; margin: 0px auto 10px auto; }
 .alert .content .nothing{ width: 40%; margin:20px 30%;}
 .alert .content .goods{ width: 60%; margin:0 20%;}
 
@@ -82,3 +82,13 @@ body{ width:100%; margin:0 auto; position:relative; font-size:16px; padding: 0;}
 .main .history li span{ font-size: 18px; color: #ffbf07; line-height: 60px; padding: 0 0 0 20px; }
 .main .history li img{ float: left; width: 40px; height: 40px; border-radius: 20px; margin: 10px 10px 0 20px; }
 .main .history li font{ font-size: 14px; color: #fff; line-height: 60px; padding: 0; word-break: break-all; }
+
+
+
+/******    history.htm     ****/
+.main .bindMobile{ width: 100%; height: 100%; display: table;}
+.main .bindMobile li{ width: 100%; height: 30px; line-height: 30px; display: list-item; float: left; overflow: hidden; padding: 0 5% 0 0; }
+.main .bindMobile li span{ font-size: 18px; color: #ffbf07; line-height: 30px; padding: 0 20px; }
+.main .bindMobile input{ width: 80%; height: 30px; background: #fff; line-height: 30px; font-size: 16px; border-radius: 5px; padding: 0 5px; font-weight: bolder;}
+.main .bindMobile a{color: #fff; width: 80%; height: 40px; border-radius: 20px; line-height: 40px; font-size: 16px;
+    display: block; text-align: center; background: #ff9e05; margin: 10px auto;}

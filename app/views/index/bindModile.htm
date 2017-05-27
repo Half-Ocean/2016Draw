@@ -1,0 +1,90 @@
+{{ partial("common/header") }}
+
+
+<div class="main">
+
+
+    <ul class="bindMobile" style="padding-top: 30px;">
+
+        <li><span>用户ID：{{userInfo['user_id']}}</span></li>
+        <li><span>用户名：{{userInfo['nickname']}}</span></li>
+
+        {% if userInfo['mobile'] %}
+        <li><span>手机号：{{userInfo['mobile']}}</span></li>
+        <li><span>您已绑定手机号，无需重复绑定</span></li>
+        {% else %}
+
+        <li style="height: 40px;"><span style="height: 40px; line-height: 40px;">
+            <input type="text" name="mobile" id="mobile" value="" placeholder="请填写您的手机号"></span></li>
+
+        <li style="height: 80px;"><a href="javascript:;" class="mobile_bind_btn">绑定手机号</a></li>
+        {% endif %}
+
+
+
+    </ul>
+
+
+
+
+
+</div>
+
+<img src="/2016Draw/img/logo1.png" style="width: 100%;">
+
+
+<script>
+    $(function(){
+        $('.main').css({'min-height':$(document).height() + 'px'});
+
+        $(".mobile_bind_btn").click(function(){
+
+            var mobile = $("#mobile").val();
+            if(mobile=='' || mobile==null){
+                alert('手机号不能为空');
+                return;
+            }
+
+            var reg= /^[1][34578]\d{9}$/;
+            if(mobile=="" || !reg.test(mobile)){
+                alert('手机号码格式输入错误');
+                return false;
+            }
+
+
+            $.ajax({
+                type: 'get',
+                url: "/2016Draw/index/bindModile/" ,
+                data: {"mobile":mobile} ,
+                dataType: "json",
+                error: function(){
+                    //alert('绑定手机号出错，请刷新页面后重新尝试:)');
+                    //window.location.reload();
+                    return;
+                } ,
+                success: function(data){
+
+                    var retcode = data.retcode;
+                    var msg = data.msg;
+                    if( retcode == -1 ){
+                        var msg = data.msg;
+                        alert(msg);
+                        window.location.reload();
+                        return;
+                    }else{
+                        alert(msg);
+                        window.location.reload();
+                        return;
+                    }
+
+
+                }
+            });
+
+
+        });
+
+
+
+    });
+</script>

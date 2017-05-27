@@ -47,6 +47,9 @@ return new \Phalcon\Config(array(
         'messageservice_hosts' => array({{range service "message-microservice"}}
             array('host' => '{{.Address}}', 'port' => {{.Port}}),{{end}}
         ),
+        'xndservice_hosts' => array({{range service "xnd-microservice"}}
+            array('host' => '{{.Address}}', 'port' => {{.Port}}),{{end}}
+        ),
     ),
 
     'redis' => array(

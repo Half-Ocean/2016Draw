@@ -39,3 +39,18 @@ insert into draw_awards values(1,'bk',0,50,'50贝壳','1.00',10000,10000,'2016-1
 (5,'vip',2699,15,'口袋故事15天VIP','12.5',10000,10000,'2016-12-26 14:05:00'),
 (6,'vip',2699,30,'口袋故事30天VIP','25.00',10000,10000,'2016-12-26 14:05:00');
 
+
+insert into draw_awards values(7,'normal',0,0,'叮咚智能WiFi音箱','798.00',5,5,'2017-05-27 14:05:00'),
+(8,'normal',0,0,'好妈妈胜过好老师','1.00',0,0,'2017-05-27 14:05:00'),
+(9,'normal',0,0,'银河守卫队电影票','45.00',20,20,'2017-05-27 14:05:00'),
+(10,'normal',0,0,'友悦早教机器人-大宝宝版X9','699.00',5,5,'2017-05-27 14:05:00'),
+(11,'normal',0,0,'友悦早教机器人-低幼版X6','199.00',10,10,'2017-05-27 14:05:00'),
+(12,'normal',0,0,'幼儿画报','42.00',80,80,'2017-05-27 14:05:00'),
+(13,'xnd',1,1,'小牛顿月卡','18.00',,150,'2017-05-27 14:05:00');
+update draw_awards set stock=0,num=0 where award_id=1;
+update draw_awards set stock=0,num=0 where award_id=2;
+update draw_awards set stock=0,num=0 where award_id=3;
+update draw_awards set stock=300,num=300 where award_id=4;
+update draw_awards set stock=200,num=200 where award_id=5;
+update draw_awards set stock=50,num=50 where award_id=6;
+

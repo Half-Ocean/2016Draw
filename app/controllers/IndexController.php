@@ -67,7 +67,6 @@ class IndexController extends \Phalcon\Mvc\Controller
 
         //概率1/2
         $chouzhongID = rand(1,2);
-  //      $chouzhongID = 1;
         if($chouzhongID == 1){
 
             $goods_list = $this->getGoodsList();
@@ -79,13 +78,11 @@ class IndexController extends \Phalcon\Mvc\Controller
                 $proArr[$goods['award_id']] = $goods['stock'];
             }
             $award_id = $this->get_rand($proArr);
-
         }else{
             //没抽中
             $award_id = 0;
         }
-
-
+        
         $this->db->begin();
         //记录抽奖记录
         $ok = $logModel->addLogs($user_id,$award_id);
@@ -130,7 +127,7 @@ class IndexController extends \Phalcon\Mvc\Controller
                 $goods_id = $award_info->goods_id;
                 $goods_quantity = $award_info->goods_quantity;
                 $order_sn = "draw##".$ok;
-                $this->ilisten_service->buyVip( $user_id , $order_sn , $goods_id , 0, $goods_quantity , "gift" , "gift" , $msg );
+                $this->ilisten_service->buyVip( $user_id , $order_sn , $goods_id , 0, $goods_quantity , "gcsbb" , "gift" , $msg );
             }elseif( $award_info->award_type == "bk" ){
                 //贝壳
                 $bk = $award_info->goods_quantity;
@@ -141,8 +138,15 @@ class IndexController extends \Phalcon\Mvc\Controller
                 //普通商品
                 $msg = "恭喜您参加抽奖获得奖品“".$award_info->award_name."”，请联系 工爸班主任的微信号：idaddy003， 提交您的配送地址信息。";
                 $this->message_service->sendSystemMsg(734236, $user_id, $msg, "", 'system', "", "");
-            }
 
+            }elseif( $award_info->award_type == "xnd" ){
+                //普通商品
+                $msg = "恭喜您参加抽奖获得奖品“".$award_info->award_name."”，小牛顿VIP已经送出，请留意您的VIP有效期已经自动增加了。如有疑问，请联系 工爸班主任的微信号：idaddy004 。";
+                $goods_id = $award_info->goods_id;
+                $goods_quantity = $award_info->goods_quantity;
+                $order_sn = "draw##".$ok;
+                $this->xnd_service->purchaseOrder($user_id, $order_sn, $goods_id, 0 , $goods_quantity , "201761活动抽奖赠送" , "gift" ,$msg);
+            }
 
 
             $this->db->commit();
@@ -152,9 +156,7 @@ class IndexController extends \Phalcon\Mvc\Controller
                 "award_price"=>$award_info->award_price,
             )));
             exit;
-
         }
-
 
         $this->db->commit();
         echo json_encode(array('retcode'=>2,'msg'=>"nothing"));
@@ -164,6 +166,41 @@ class IndexController extends \Phalcon\Mvc\Controller
     }
 
 
+    public function bindModileAction(){
+
+        $userModel = new Users();
+        $user_id = $this->cookies->get('gcsbbUid')->getValue();
+        $userInfo = $userModel->getUserInfo($user_id);
+
+        if( isset($_GET["mobile"]) ){
+            $mobile = $_GET["mobile"];
+            if( !empty($userInfo['mobile']) ){
+                echo json_encode(array("retcode"=>-1,"msg"=>"您的帐号已绑定手机号，无需重复绑定"));
+                exit;
+            }
+
+
+            $ret = $this->member_service->isMobileBind($mobile);
+            if( $ret->isbind == 1 ){
+                echo json_encode(array("retcode"=>-1,"msg"=>"该手机号已绑定其他账户（ID:".$ret->user_id."），请尝试其他手机号"));
+                exit;
+            }
+
+
+            $this->member_service->bindMobile($user_id , $mobile);
+            echo json_encode(array("retcode"=>1,"msg"=>"该手机号绑定账户成功:)"));
+            exit;
+
+        }
+
+        $this->view->setVar('userInfo',$userInfo);
+        $this->view->setVar('ilisten_title',"抽奖活动绑定手机页面");
+        $this->view->setVar('title',"工程师爸爸抽奖活动页面-绑定手机");
+
+    }
+
+
+
 
     public function goodsListAction(){
 
@@ -171,7 +208,6 @@ class IndexController extends \Phalcon\Mvc\Controller
         $nums = $this->getGoodsNum();
         $stock = $this->getGoodsStock();
         $list = $this->getGoodsList();
-
 
         $this->view->setVar('present',intval(doubleval($stock/$nums)*100));
         $this->view->setVar('list',$list);

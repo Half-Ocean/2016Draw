@@ -27,6 +27,25 @@ $di->setShared('member_service', function() use ($config) {
 });
 
 
+// 小牛顿系统微服务注入
+$di->setShared('xnd_service', function() use ($config) {
+	try{
+		$xndservice_host = $config->microservice->xndservice_hosts[rand(0, count($config->microservice->xndservice_hosts) - 1)];
+
+		$socket_xnd = new \Thrift\Transport\TSocket($xndservice_host->host, $xndservice_host->port);
+		$transport_xnd = new \Thrift\Transport\TFramedTransport($socket_xnd);
+		$protocol_xnd = new \Thrift\Protocol\TBinaryProtocol($transport_xnd);
+		$transport_xnd->open();
+		$xnd_service = new \Services\xnd\xndClient($protocol_xnd);
+		return $xnd_service;
+	} catch(Exception $e) {
+		echo "xndService初始化失败，错误码：".$e->getCode() .",错误原因：".$e->getMessage();
+		error_log("xndService初始化失败，错误码：".$e->getCode() .",错误原因：".$e->getMessage());
+		exit();
+	}
+});
+
+
 // ilisten系统微服务注入
 $di->setShared('ilisten_service', function() use ($config) {
 	try{
@@ -161,11 +180,11 @@ $di->set('acl', function() use ($config) {
 	$acl->addRole($roleAdmins);
 
 	//添加资源
-	$acl->addResource(new Phalcon\Acl\Resource('index'), array('index','goodsList','history','myHistory','light'));
+	$acl->addResource(new Phalcon\Acl\Resource('index'), array('index','goodsList','history','myHistory','light','bindModile'));
 	$acl->addResource(new Phalcon\Acl\Resource('main'), array('index'));
 
 	//权限下的Controller
- 	$acl->allow('Guests', 'index', 'goodsList ');
+ 	$acl->allow('Guests', 'index', 'goodsList');
 	//权限下的Controller
 	$acl->allow('Admins', 'index', '*');
 	$acl->allow('Admins', 'main', '*');
