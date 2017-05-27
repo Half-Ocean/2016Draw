@@ -165,12 +165,9 @@ $di->set('acl', function() use ($config) {
 	$acl->addResource(new Phalcon\Acl\Resource('main'), array('index'));
 
 	//权限下的Controller
- 	$acl->allow('Guests', 'index', '*');
+ 	$acl->allow('Guests', 'index', 'goodsList ');
 	//权限下的Controller
-	$acl->allow('Admins', 'index', 'index');
-	$acl->allow('Admins', 'index', 'history');
-	$acl->allow('Admins', 'index', 'myHistory');
-	$acl->allow('Admins', 'index', 'light');
+	$acl->allow('Admins', 'index', '*');
 	$acl->allow('Admins', 'main', '*');
 
 

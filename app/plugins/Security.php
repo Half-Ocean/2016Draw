@@ -28,8 +28,7 @@ class Security extends Phalcon\Mvc\User\Plugin
 				$role = "Admins";
 			}
 		}else{
-			header("Location:".$this->config->web->loginUrl."?ret_url=".urlencode($this->config->web->siteUrl));
-			return false;
+			$role = "Guests";
 		}
 
 		$controller = $dispatcher->getControllerName();
@@ -40,7 +39,7 @@ class Security extends Phalcon\Mvc\User\Plugin
 		$allowed = $acl->isAllowed($role, $controller, $action);
 
 		if ($allowed != Phalcon\Acl::ALLOW) {
-			header("Location:/2016Draw/index/");
+			header("Location:".$this->config->web->loginUrl."?ret_url=".urlencode($this->config->web->siteUrl));
 			return false;
 		}
 	}
