@@ -82,7 +82,7 @@ class IndexController extends \Phalcon\Mvc\Controller
             //没抽中
             $award_id = 0;
         }
-        
+
         $this->db->begin();
         //记录抽奖记录
         $ok = $logModel->addLogs($user_id,$award_id);
