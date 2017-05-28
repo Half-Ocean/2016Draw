@@ -184,7 +184,7 @@ $di->set('acl', function() use ($config) {
 	$acl->addResource(new Phalcon\Acl\Resource('main'), array('index'));
 
 	//权限下的Controller
- 	$acl->allow('Guests', 'index', 'goodsList');
+ 	$acl->allow('Guests', 'index', '*');
 	//权限下的Controller
 	$acl->allow('Admins', 'index', '*');
 	$acl->allow('Admins', 'main', '*');
