@@ -208,8 +208,35 @@ class IndexController extends \Phalcon\Mvc\Controller
         $nums = $this->getGoodsNum();
         $stock = $this->getGoodsStock();
         $list = $this->getGoodsList();
+        $present = intval(doubleval($stock/$nums)*100);
+        if($present > 100){
+            $present = 100;
+        }
 
-        $this->view->setVar('present',intval(doubleval($stock/$nums)*100));
+        foreach($list as $k=>$v){
+            switch($v['award_id']){
+                case 11:
+                    $list[$k]['url']="http://mall.idaddy.cn/mobile/index.php?app=goods&id=537";
+                    break;
+                case 10:
+                    $list[$k]['url']="http://mp.weixin.qq.com/bizmall/malldetail?id=&pid=pi85twA7EjET98aw3LgVz9vknwY0&biz=MzIyODQyMTc3MQ==&scene=&action=show_detail&showwxpaytitle=1#wechat_redirect";
+                    break;
+                case 12:
+                    $list[$k]['url']="http://world.tmall.com/item/41435581814.htm";
+                    break;
+                case 7:
+                    $list[$k]['url']="http://item.jd.com/1755145.html";
+                    break;
+                case 8:
+                    $list[$k]['url']="http://item.jd.com/11571255.html";
+                    break;
+                default:
+                    $list[$k]['url']="javascript:;";
+                    break;
+            }
+        }
+
+        $this->view->setVar('present',$present);
         $this->view->setVar('list',$list);
         $this->view->setVar('stock',$stock);
         $this->view->setVar('nums',$nums);

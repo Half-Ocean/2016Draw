@@ -30,7 +30,7 @@ body{ width:100%; margin:0 auto; position:relative; font-size:16px; padding: 0;}
 
 
 /****** index.htm   ****/
-.main{ width: 100%; max-width: 560px; display: block; margin: auto; position: relative;
+.main{ width: 100%; max-width: 560px; display: table; margin: auto; position: relative;
     background: url("/2016Draw/img/bg.jpg") no-repeat top center #451142; background-size: 100% auto;}
 
 .main .gz{ width: 80px; height: 80px; display: block; position: absolute; top: 0; right: 0;
@@ -70,7 +70,7 @@ body{ width:100%; margin:0 auto; position:relative; font-size:16px; padding: 0;}
 .main .goods_list{ width: 95%; margin: auto;}
 .main .goods_list li{ width: 44%; display: list-item; float: left; margin: 3%; background: #fff; border-radius: 5px; position: relative; }
 .main .goods_list li img{ width: 90%; margin: 5%;}
-.main .goods_list h1{ font-size: 14px; text-align: center; line-height: 20px; height: 20px; overflow: hidden; color: #000; margin: 0 0 10px 0;}
+.main .goods_list h1{ font-size: 14px; text-align: center; line-height: 20px; height: 40px; overflow: hidden; color: #000; margin: 0 0 10px 0;}
 .main .goods_list h2{ font-size: 14px; text-align: center; line-height: 20px; height: 20px; overflow: hidden; color: #db0a7f; margin: 0 0 10px 0;}
 .main .goods_list .no h1{ color: #ccc;}
 .main .goods_list .no h2{ color: #ccc;}

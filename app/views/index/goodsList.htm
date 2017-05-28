@@ -20,13 +20,17 @@
 
         {% for goods in list %}
         <li {% if goods['stock']<=0 %}class="no"{% endif %}>
+                <a href="{{goods['url']}}">
                 {% if goods['stock']>0 %}
                 <img src="/2016Draw/img/goods/{{goods['award_id']}}.jpg">
                 {% else %}
                 <img src="/2016Draw/img/goods/{{goods['award_id']}}_no.jpg">
                 <div class="empty"></div>
                 {% endif %}
+                </a>
             <h1>{{goods['award_name']}}</h1>
+            <h2>还剩余数量：{{goods['stock']}}</h2>
+            <h2>价值：{{goods['award_price']}}元</h2>
         </li>
         {% endfor %}
 
