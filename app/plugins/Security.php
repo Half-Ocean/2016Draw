@@ -31,6 +31,12 @@ class Security extends Phalcon\Mvc\User\Plugin
 			$role = "Guests";
 		}
 
+		if( empty($user_id) ){
+			header("Location:".$this->config->web->loginUrl."?ret_url=".urlencode($this->config->web->siteUrl));
+			return false;
+		}
+
+
 		$controller = $dispatcher->getControllerName();
 		$action = $dispatcher->getActionName();
 
@@ -39,7 +45,6 @@ class Security extends Phalcon\Mvc\User\Plugin
 		$allowed = $acl->isAllowed($role, $controller, $action);
 
 		if ($allowed != Phalcon\Acl::ALLOW) {
-			header("Location:".$this->config->web->loginUrl."?ret_url=".urlencode($this->config->web->siteUrl));
 			return false;
 		}
 

@@ -175,7 +175,7 @@ class IndexController extends \Phalcon\Mvc\Controller
         if( isset($_GET["mobile"]) ){
             $mobile = $_GET["mobile"];
             if( !empty($userInfo['mobile']) ){
-                echo json_encode(array("retcode"=>-1,"msg"=>"您的帐号已绑定手机号，无需重复绑定"));
+                echo json_encode(array("retcode"=>-1,"msg"=>"您的帐号已填写手机号，无需重复填写"));
                 exit;
             }
 
@@ -188,7 +188,7 @@ class IndexController extends \Phalcon\Mvc\Controller
 
 
             $this->member_service->bindMobile($user_id , $mobile);
-            echo json_encode(array("retcode"=>1,"msg"=>"该手机号绑定账户成功:)"));
+            echo json_encode(array("retcode"=>1,"msg"=>"该手机号填写成功:)"));
             exit;
 
         }
@@ -222,7 +222,7 @@ class IndexController extends \Phalcon\Mvc\Controller
                     $list[$k]['url']="http://mp.weixin.qq.com/bizmall/malldetail?id=&pid=pi85twA7EjET98aw3LgVz9vknwY0&biz=MzIyODQyMTc3MQ==&scene=&action=show_detail&showwxpaytitle=1#wechat_redirect";
                     break;
                 case 12:
-                    $list[$k]['url']="http://world.tmall.com/item/41435581814.htm";
+                    $list[$k]['url']="https://item.jd.com/1552040221.html";
                     break;
                 case 7:
                     $list[$k]['url']="http://item.jd.com/1755145.html";
