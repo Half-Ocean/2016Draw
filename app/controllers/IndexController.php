@@ -230,6 +230,16 @@ class IndexController extends \Phalcon\Mvc\Controller
                 case 8:
                     $list[$k]['url']="http://item.jd.com/11571255.html";
                     break;
+                case 13:
+                    $list[$k]['url']="http://xnd.idaddy.cn/";
+                    break;
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                    $list[$k]['url']="https://community.idaddy.cn/share/topic/403";
+                    break;
                 default:
                     $list[$k]['url']="javascript:;";
                     break;
@@ -250,7 +260,7 @@ class IndexController extends \Phalcon\Mvc\Controller
 
         $list =array();
         $logs = Logs::find(array(
-            "award_id > 0",
+            "award_id > 0 and create_time > '2017-05-30'",
             "order" =>"create_time desc",
             "limit" => 100
         ));
@@ -281,7 +291,7 @@ class IndexController extends \Phalcon\Mvc\Controller
 
         $list =array();
         $logs = Logs::find(array(
-            "award_id > 0 AND user_id = :user_id:",
+            "award_id > 0 AND user_id = :user_id: and create_time > '2017-05-30'",
             "bind"=>array("user_id"=>$user_id),
             "order" =>"create_time desc",
             "limit" => 100
@@ -308,7 +318,7 @@ class IndexController extends \Phalcon\Mvc\Controller
     private function getGoodsList(){
 
         $list = array();
-        $goods_list = Awards::find(array("order"=>"award_price desc"));
+        $goods_list = Awards::find(array("order"=>"update_time desc , award_price desc"));
         foreach( $goods_list as $goods ){
 
             $list[] = array(

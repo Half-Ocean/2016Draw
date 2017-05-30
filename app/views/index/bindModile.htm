@@ -11,13 +11,24 @@
 
         {% if userInfo['mobile'] %}
         <li><span>手机号：{{userInfo['mobile']}}</span></li>
-        <li><span>您已绑定手机号，无需重复绑定</span></li>
+        <li style=" display:table; padding-top: 20px;">
+            <span style="line-height: 25px; display: table; font-size: 14px; color: #fff; ">
+            <strong>您已填写手机号，无需重复填写</strong><br><br>
+            <strong>领奖方法：</strong><br>
+            1、叮咚智能WiFi音箱、友悦宝早教机器人、幼儿画报杂志、《好妈妈胜过好老师》书籍、银河守卫队电影票的领取方式都会在活动结束后以短信形式告知；<br><br>
+2、口袋故事VIP和小牛顿月卡只需要下载“口袋故事”APP后用参与活动的微信登陆，在APP内【我的-订单-VIP】即可查看中奖记录。<br><br>
+3、您可以通过以下方式提交您的收货地址信息，以便工作人员安排奖品发放。
+
+        </span></li>
+        <li style="height: 50px; padding-top: 20px;"><a href="http://a.app.qq.com/o/simple.jsp?pkgname=com.appshare.android.ilisten&g_f=991640#opened">下载口袋故事</a></li>
+        <li style="height: 50px;"><a href="https://jinshuju.net/f/gZ9jpQ">提交收货信息</a></li>
+
         {% else %}
 
         <li style="height: 40px;"><span style="height: 40px; line-height: 40px;">
             <input type="text" name="mobile" id="mobile" value="" placeholder="请填写您的手机号"></span></li>
 
-        <li style="height: 80px;"><a href="javascript:;" class="mobile_bind_btn">绑定手机号</a></li>
+        <li style="height: 80px;"><a href="javascript:;" class="mobile_bind_btn">提交</a></li>
         {% endif %}
 
 

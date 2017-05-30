@@ -6,10 +6,23 @@
     <a href="http://a.xiumi.us/board/v5/2n2b4/45058360" class="gz"></a>
     <div class="clear" style="height: 35px;"></div>
     <div class="goods_count" onclick="window.location.href='/2016Draw/index/goodsList/'">
-        还剩<span>{{stock}}</span>个奖品 点击查看
+        还剩<span> {{stock}} </span>个奖品 点击查看
         <font></font>
     </div>
-    <div class="clear" style="height: 30px;"></div>
+
+    <div class="clear" style="height: 10px;"></div>
+
+    <div class="light_count" onclick="window.location.href='/2016Draw/index/myHistory/';">
+        {%if count<=0%}
+        <font>【查看我的中奖历史】</font>
+        {%else%}
+        <font> 您还有 </font>
+        <span>{{count}}</span>
+        <font> 次抽奖机会</font>
+        {%endif%}
+    </div>
+
+    <div class="clear" style="height: 10px;"></div>
 
 
     <ul class="light up">
@@ -24,14 +37,6 @@
         <li></li>
     </ul>
 
-
-    <div class="clear" style="height: 50px;"></div>
-
-    <div class="light_count" onclick="window.location.href='/2016Draw/index/myHistory/';">
-        <font>您还剩余 </font>
-        <span>{{count}}</span>
-        <font> 次抽奖机会</font>
-    </div>
 
 
     <a href="" class="go_light" style="display: none;">
@@ -89,7 +94,7 @@
 
 <script>
     $(function(){
-        $('.main').css({'min-height':$(document).height() + 'px'});
+        $('.main').css({'min-height':($(document).height()-50) + 'px'});
         $('.light>li').height($('.light>li').width()*1.1);
 
         $(".black,.close").click(function(){

@@ -30,7 +30,8 @@ class MainController extends \Phalcon\Mvc\Controller
         $sql = "select l.*,d.award_name,d.award_type
                 from draw_logs as l
                 left join draw_awards as d on d.award_id = l.award_id
-                where 1 = 1 AND l.award_id>0 ";
+                where 1 = 1 AND l.award_id>0
+                ";
 
         if(!empty($search_uid)){
             $sql .= " AND l.user_id = ".intval($search_uid);
@@ -51,7 +52,7 @@ class MainController extends \Phalcon\Mvc\Controller
     public function userlogAction(){
 
         $search_uid = isset($_REQUEST['search_uid'])?intval($_REQUEST['search_uid']):'';
-        $sql = "select * from draw_user_log where 1 = 1 ";
+        $sql = "select * from draw_user_log where 1 = 1  ";
 
         if(!empty($search_uid)){
             $sql .= " AND user_id = ".intval($search_uid);

@@ -50,12 +50,12 @@ body{ width:100%; margin:0 auto; position:relative; font-size:16px; padding: 0;}
 .main .down li{ background: url("/2016Draw/img/light-down.png") center no-repeat; background-size: 90% auto;}
 
 .main .light_count{ display:table;text-align: center; position: relative; margin: auto;}
-.main .light_count font{ float: left; color: #e2b041; font-size: 16px; font-weight: bolder; line-height: 40px; display: block; }
+.main .light_count font{ float: left; color: #e2b041; font-size: 16px; font-weight: bolder; line-height: 40px; display: block;  }
 .main .light_count span{ height: 30px; line-height: 30px; border-radius: 5px; padding: 0 5px; display: block; float: left; background: #e2b041; color: #000; font-weight: bolder; margin: 5px 5px 0 5px; }
 
 
 .main .go_light{ color: #fff; width: 250px; height: 40px; border-radius: 20px; line-height: 40px; font-size: 16px; display: block; text-align: center; background: #ff9e05; margin: auto;}
-.main .bottom{ width: 100%; height: 40px; line-height: 40px; position: absolute; bottom: 0; color: #eca1dc; text-align: center; font-size: 14px; }
+.main .bottom{ width: 100%; height: 40px; line-height: 40px; position: absolute; bottom: 0; color: #eca1dc; text-align: center; font-size: 14px; text-decoration: underline;}
 
 
 /******    goodsList.htm     ****/
@@ -82,7 +82,8 @@ body{ width:100%; margin:0 auto; position:relative; font-size:16px; padding: 0;}
 .main .history li span{ font-size: 18px; color: #ffbf07; line-height: 60px; padding: 0 0 0 20px; }
 .main .history li img{ float: left; width: 40px; height: 40px; border-radius: 20px; margin: 10px 10px 0 20px; }
 .main .history li font{ font-size: 14px; color: #fff; line-height: 60px; padding: 0; word-break: break-all; }
-
+.main h3 a{color: #fff; width: 80%; height: 40px; border-radius: 20px; line-height: 40px; font-size: 16px;
+    display: block; text-align: center; background: #ff9e05; margin: 10px auto;}
 
 
 /******    history.htm     ****/
